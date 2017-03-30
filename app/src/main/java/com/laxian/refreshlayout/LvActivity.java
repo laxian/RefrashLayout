@@ -1,4 +1,4 @@
-package com.laxian.refrashlayout;
+package com.laxian.refreshlayout;
 
 import android.os.Handler;
 import android.os.Message;
@@ -12,13 +12,16 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
+import com.laxian.RefreshLayout.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class LvActivity extends AppCompatActivity {
 
     private ListView mListView;
-    private RefreshLayout mRefreshLayout;
+    private XSwipeRefreshLayoutLV mXSwipeRefreshLayoutLV;
 
     Handler mHandler = new Handler() {
         @Override
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 0:
-                    mRefreshLayout.setLoading(false);
+                    mXSwipeRefreshLayoutLV.setLoading(false);
                     break;
             }
         }
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mRefreshLayout = (RefreshLayout) findViewById(R.id.view_refrash);
+        mXSwipeRefreshLayoutLV = (XSwipeRefreshLayoutLV) findViewById(R.id.view_refrash);
         mListView = (ListView) findViewById(R.id.lv_test);
 
         final List<String> datas = new ArrayList<>();
@@ -48,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
         myAdapter = new MyAdapter(datas);
         mListView.setAdapter(myAdapter);
 
-        mRefreshLayout.setFooterStyle(RefreshLayout.FooterStyle.FLOAT);
-        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        mXSwipeRefreshLayoutLV.setFooterStyle(XSwipeRefreshLayoutLV.FooterStyle.FLOAT);
+        mXSwipeRefreshLayoutLV.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 new Thread(){
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 myAdapter.notifyDataSetChanged();
                                 mListView.smoothScrollByOffset(0);
-                                mRefreshLayout.setRefreshing(false);
+                                mXSwipeRefreshLayoutLV.setRefreshing(false);
                             }
                         });
                     }
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mRefreshLayout.setOnLoadListener(new RefreshLayout.OnLoadListener() {
+        mXSwipeRefreshLayoutLV.setOnLoadListener(new XSwipeRefreshLayoutLV.OnLoadListener() {
             @Override
             public void onLoad() {
 //                mRefreshLayout.setLoading(true);
@@ -105,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }.start();
 
-//                mRefrashLayout.setLoading(false);
+//                mRefreshLayout.setLoading(false);
             }
         });
     }
@@ -137,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             Holder holder;
             if (convertView == null) {
                 holder = new Holder();
-                convertView = LayoutInflater.from(MainActivity.this).inflate(R.layout.item_list, null);
+                convertView = LayoutInflater.from(LvActivity.this).inflate(R.layout.item_list, null);
                 holder.textView = (TextView) convertView.findViewById(R.id.tv_item);
                 convertView.setTag(holder);
             } else {

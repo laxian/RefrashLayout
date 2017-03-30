@@ -1,4 +1,4 @@
-package com.laxian.refrashlayout;
+package com.laxian.refreshlayout;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

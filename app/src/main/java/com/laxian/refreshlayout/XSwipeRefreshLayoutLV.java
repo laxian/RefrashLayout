@@ -1,4 +1,4 @@
-package com.laxian.refrashlayout;
+package com.laxian.refreshlayout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,7 +18,7 @@ import android.widget.ProgressBar;
  * Created by zhouweixian on 2016/2/1.
  * 添加下拉加载功能
  */
-public class RefreshLayout extends SwipeRefreshLayout implements AbsListView.OnScrollListener {
+public class XSwipeRefreshLayoutLV extends SwipeRefreshLayout implements AbsListView.OnScrollListener {
     private static final float MIN_HEIGHT = 200;
     private final String TAG = this.getClass().getSimpleName();
     private Context mContext;
@@ -45,12 +45,12 @@ public class RefreshLayout extends SwipeRefreshLayout implements AbsListView.OnS
         FLOAT, BELOW;
     }
 
-    public RefreshLayout(Context context) {
+    public XSwipeRefreshLayoutLV(Context context) {
         super(context);
         this.mContext = context;
     }
 
-    public RefreshLayout(Context context, AttributeSet attrs) {
+    public XSwipeRefreshLayoutLV(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;
     }

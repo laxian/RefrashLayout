@@ -1,4 +1,4 @@
-package com.laxian.refrashlayout;
+package com.laxian.refreshlayout;
 
 import org.junit.Test;
 
